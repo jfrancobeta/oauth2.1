@@ -1,0 +1,25 @@
+# configurar el servicor de recursos y el client
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://127.0.0.1:9000"
+      client:
+        registration:
+          client-app:  #nombre del servidor de autenticacion
+            provider: spring  #provedor
+            client-id: client-app #nombre del client_id
+            client-secret: 1234 #client secret o contraseña
+            authorization-grant-type: authorization_code # solicitando el codigo de autorizacion
+            redirect-uri: "http://127.0.0.1:8080/authorized" #controlador que ira la ruta o endpoint
+            scope: 
+             - openid
+             - profile
+             - read
+             - write
+            client-name: client-app
+        provider:
+          spring:
+           issuer-uri: "http://127.0.0.1:9000"
+            
